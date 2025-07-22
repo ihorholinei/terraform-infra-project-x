@@ -18,6 +18,12 @@ variable "azs" {
   description = "Availability zones to use"
 }
 
+variable "vpc_name" {
+  type        = string
+  description = "Name prefix for VPC resources"
+  default     = "main"
+}
+
 variable "tags" {
   type        = map(string)
   default     = {}
