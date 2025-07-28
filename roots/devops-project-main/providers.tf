@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    # bucket         = "project-x-state-bucket-staging" 
+    # bucket         = "project-x-state-bucket-den-iho" 
     key            = "terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraformlock"
