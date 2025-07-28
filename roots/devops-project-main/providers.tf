@@ -7,7 +7,8 @@ terraform {
     # bucket         = "project-x-state-bucket-den-iho" 
     key            = "terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "terraformlock"
+    use_lockfile   = true
+    # dynamodb_table = "terraformlock"
   }
 }
 
