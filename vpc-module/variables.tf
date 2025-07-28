@@ -1,30 +1,45 @@
+variable "environment" {
+  type        = string
+  description = "Deployment environment name (e.g., dev, staging, prod)."
+}
+
 variable "vpc_cidr" {
   type        = string
-  description = "CIDR block for the VPC"
+  description = "CIDR block for the VPC to be created"
 }
 
-variable "public_subnets" {
+variable "public_subnet_cidrs" {
   type        = list(string)
-  description = "List of public subnet CIDRs"
+  description = "List of 3 CIDR blocks for the public subnets, one in each availability zone."
+
+  validation {
+    condition     = length(var.public_subnet_cidrs) == 3
+    error_message = "Exactly 3 public subnet CIDRs must be provided."
+  }
 }
 
-variable "private_subnets" {
+variable "private_subnet_cidrs" {
   type        = list(string)
-  description = "List of private subnet CIDRs"
+  description = "List of 3 CIDR blocks for the private subnets, one in each availability zone."
+
+
+  validation {
+    condition     = length(var.private_subnet_cidrs) == 3
+    error_message = "Exactly 3 private subnet CIDRs must be provided."
+  }
 }
 
-variable "azs" {
+variable "availability_zones" {
   type        = list(string)
-  description = "Availability zones to use"
+  description = "List of exactly 3 availability zones where public and private subnets will be deployed."
+
+  validation {
+    condition     = length(var.availability_zones) == 3
+    error_message = "Exactly 3 availability zones must be provided."
+  }
 }
 
-variable "vpc_name" {
+variable "project_name" {
   type        = string
-  description = "Name prefix for VPC resources"
-  default     = "main"
+  description = "Name of the project, used for naming and tagging resources."
 }
-
-variable "tags" {
-  type        = map(string)
-  default     = {}
-} 

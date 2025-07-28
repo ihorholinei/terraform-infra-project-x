@@ -1,0 +1,102 @@
+name: 'Workflow - Deploy on multi-account AWS with Terraform'
+on:
+  # trigger/start job when push happens to any of specified branches
+  push:
+    branches:
+    - feature/**
+    - main
+    # - staging
+# required permissions by GitHub Actions for assuming AWS IAM role
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+env:
+  AWS_REGION: "us-east-1"
+  # ENVIRONMENT_STAGE: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
+  # since production and staging are not ready, deploy only to dev for now
+  ENVIRONMENT_STAGE: "dev"
+  enable_condition: ${{ github.ref == 'refs/heads/main' }}
+
+jobs:
+  deploy-terraform:
+    runs-on: ubuntu-22.04
+    # default settings to apply for all the steps
+    defaults:
+      run:
+        working-directory: ./roots/devops-project-main
+        shell: bash
+    # environment: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
+    # since production and staging are not ready, deploy only to dev for now
+    environment: dev
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # equivalent of "git clone repo"
+      - uses: actions/checkout@v3
+
+      # login to AWS
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.IAM_ROLE }}
+          role-session-name: GitHubActionsRoleSession
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        run: |
+          AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+          terraform init -backend-config="bucket=${AWS_ACCOUNT_ID}-state-bucket-${ENVIRONMENT_STAGE}" -backend-config="key=${GITHUB_REF#refs/heads/}.tfstate"
+
+      # Checks that all Terraform configuration files adhere to a canonical format
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      # Generates an execution plan for Terraform
+      - name: Terraform Plan
+        run: terraform plan -input=false -var-file=${ENVIRONMENT_STAGE}.tfvars --var="enable_condition=${{ env.enable_condition }}"
+
+      # Build infrastructure according to Terraform configuration files
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false -var-file=${ENVIRONMENT_STAGE}.tfvars --var="enable_condition=${{ env.enable_condition }}"
+
+    #   # Install NGINX Ingress Controller via Helm
+    #   - name: Install NGINX Ingress Controller via Helm
+    #     run: |
+    #       # Get the EKS cluster name from SSM Parameter Store (specify region)
+    #       CLUSTER_NAME=$(aws ssm get-parameter \
+    #         --name /infra/eks/cluster-name \
+    #         --query 'Parameter.Value' \
+    #         --output text \
+    #         --region $AWS_REGION)
+
+    #       # Update kubeconfig to connect kubectl and helm to the EKS cluster
+    #       aws eks update-kubeconfig --name $CLUSTER_NAME --region $AWS_REGION
+
+    #       # Install Ingress NGINX via Helm
+    #       helm upgrade --install ingress-nginx ingress-nginx \
+    #        --repo https://kubernetes.github.io/ingress-nginx \
+    #        --namespace ingress-nginx \
+    #        --create-namespace \
+    #        --set controller.service.type=LoadBalancer \
+    #        --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-type"="nlb" \
+    #        --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-nlb-target-type"="ip" \
+    #        --set controller.service.externalTrafficPolicy=Local \
+    #        --set controller.admissionWebhooks.enabled=false
+           
+    #    # Verify if EKS worker nodes joined the cluster
+    #   - name: Check EKS Node Registration
+    #     run: |
+    #       echo "Checking registered EKS worker nodes:"
+    #       kubectl get nodes -o wide || echo " No nodes joined the cluster!"
+
+    #    # Simple check for Ingress NGINX pods and service
+    #   - name: Check Ingress NGINX Status
+    #     run: |
+    #       echo "Getting Ingress NGINX pods status:"
+    #       kubectl get pods -n ingress-nginx
+
+    #       echo "Getting Ingress NGINX service:"
+    #       kubectl get svc ingress-nginx-controller -n ingress-nginx -o wide
+
+
+ 
