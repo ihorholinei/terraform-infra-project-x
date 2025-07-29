@@ -9,6 +9,7 @@ private_subnet_ids = [
 ]
 eks_nodes_sg_id = "sg-0078aefc09d269a10"
 
+
 role_name           = "cluster-autoscaler-irsa-v2"
 serviceaccount_name = "cluster-autoscaler"
 oidc_provider_arn   = "arn:aws:iam::340924313311:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/F4C0076A985F1F8B9116CC121C7BB92F"
