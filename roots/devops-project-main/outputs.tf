@@ -16,15 +16,15 @@ output "eks_oidc_provider_url" {
   value       = length(module.eks) > 0 ? module.eks[0].eks_oidc_provider_url : ""
 }
 
-output "db_endpoint" {
-  description = "The endpoint URL of the RDS database instance provisioned by the versus_mysql module"
-  value       = length(module.versus_mysql) > 0 ? module.versus_mysql[0].db_instance_endpoint : null
-}
-output "cloudwatch_alarm_name" {
-  description = "The name of the CloudWatch alarm for high CPU utilization, created by the rds_cpu_alarm module"
-  value       = length(module.rds_cpu_alarm) > 0 ? module.rds_cpu_alarm[0].cpu_alarm_name : null
-}
-output "sns_topic_arn" {
-  description = "The ARN of the SNS topic used for CloudWatch alarm notifications, created by the rds_cpu_alarm module"
-  value       = length(module.rds_cpu_alarm) > 0 ? module.rds_cpu_alarm[0].sns_topic_arn : null
-}
+# output "db_endpoint" {
+#   description = "The endpoint URL of the RDS database instance provisioned by the versus_mysql module"
+#   value       = length(module.versus_mysql) > 0 ? module.versus_mysql[0].db_instance_endpoint : null
+# }
+# output "cloudwatch_alarm_name" {
+#   description = "The name of the CloudWatch alarm for high CPU utilization, created by the rds_cpu_alarm module"
+#   value       = length(module.rds_cpu_alarm) > 0 ? module.rds_cpu_alarm[0].cpu_alarm_name : null
+# }
+# output "sns_topic_arn" {
+#   description = "The ARN of the SNS topic used for CloudWatch alarm notifications, created by the rds_cpu_alarm module"
+#   value       = length(module.rds_cpu_alarm) > 0 ? module.rds_cpu_alarm[0].sns_topic_arn : null
+# }
