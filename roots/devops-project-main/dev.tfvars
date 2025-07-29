@@ -34,7 +34,7 @@ github_tf_runner_role_arn = "arn:aws:iam::340924313311:role/GitHubActionsTerrafo
 # external_dns_sa_name      = "external-dns"
 
 # eks_resource_arns = ["arn:aws:eks:us-east-1:340924313311:cluster/temporary-eks-cluster-dev"] # Or provide exact ARNs if known
-aws_account_id    = "340924313311"
+aws_account_id = "340924313311"
 
 // ********** RDS Variabes **********
 # multi_az                    = false
