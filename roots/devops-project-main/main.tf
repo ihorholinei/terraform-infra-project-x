@@ -14,17 +14,16 @@
 # }
 
 
-module "cluster_autoscaler_irsa" {
-  # count               = var.enable_condition ? 1 : 0
-  source              = "../../autoscaler-module"
-  role_name           = var.role_name
-  serviceaccount_name = var.serviceaccount_name
-  oidc_provider_arn   = var.oidc_provider_arn
-  oidc_provider_url   = var.oidc_provider_url
-  oidc_sub            = var.oidc_sub
-  aws_account_id      = var.aws_account_id
-
-}
+# module "cluster_autoscaler_irsa" {
+#   # count               = var.enable_condition ? 1 : 0
+#   source              = "../../autoscaler-module"
+#   role_name           = var.role_name
+#   serviceaccount_name = var.serviceaccount_name
+#   oidc_provider_arn   = var.oidc_provider_arn
+#   oidc_provider_url   = var.oidc_provider_url
+#   oidc_sub            = var.oidc_sub
+#   aws_account_id      = var.aws_account_id
+# }
 
 # module "proshop_documentdb" {
 #   count           = var.enable_condition ? 1 : 0
@@ -78,9 +77,9 @@ module "eks" {
   source                    = "../../eks-module"
   project_name              = var.project_name
   environment               = var.environment
-  vpc_id                    = module.vpc[0].vpc_id
+  vpc_id                    = module.vpc.vpc_id
   vpc_cidr                  = var.vpc_cidr
-  public_subnet_ids         = module.vpc[0].public_subnet_ids
+  public_subnet_ids         = module.vpc.public_subnet_ids
   k8s_version               = var.k8s_version
   ec2_types                 = var.ec2_types
   workers_min               = var.workers_min
