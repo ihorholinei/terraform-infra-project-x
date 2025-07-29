@@ -44,8 +44,7 @@ jobs:
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         run: |
-          AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
-          terraform init -backend-config="bucket=${AWS_ACCOUNT_ID}-project-x-state-bucket-den-iho-${ENVIRONMENT_STAGE}" -backend-config="key=${GITHUB_REF#refs/heads/}.tfstate"
+          terraform init -backend-config="bucket=project-x-state-bucket-den-iho-${ENVIRONMENT_STAGE}" -backend-config="key=${GITHUB_REF#refs/heads/}.tfstate"
 
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
