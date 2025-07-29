@@ -15,10 +15,10 @@ variable "enable_condition" {
 }
 
 #Variables for ReadOnlyIAMRole
-variable "eks_resource_arns" {
-  description = "List of EKS cluster ARNs or resource ARNs"
-  type        = list(string)
-}
+# variable "eks_resource_arns" {
+#   description = "List of EKS cluster ARNs or resource ARNs"
+#   type        = list(string)
+# }
 
 variable "aws_account_id" {
   description = "AWS account ID that is allowed to assume the ReadOnly Cluster Role; also where the EKS cluster and other IAM resources are provisioned"
@@ -139,36 +139,36 @@ variable "oidc_provider_id" {
   type        = string
 }
 
-variable "external_dns_sa_namespace" {
-  description = "Namespace of the external-dns ServiceAccount"
-  type        = string
-}
+# variable "external_dns_sa_namespace" {
+#   description = "Namespace of the external-dns ServiceAccount"
+#   type        = string
+# }
 
-variable "external_dns_sa_name" {
-  description = "Name of the external-dns ServiceAccount"
-  type        = string
-}
+# variable "external_dns_sa_name" {
+#   description = "Name of the external-dns ServiceAccount"
+#   type        = string
+# }
 
 // ********** RDS Variabes **********
-variable "versus_db_instance_class" {
-  description = "DB instance class for Versus MySQL"
-  type        = string
-}
+# variable "versus_db_instance_class" {
+#   description = "DB instance class for Versus MySQL"
+#   type        = string
+# }
 
-variable "versus_db_allocated_storage" {
-  description = "Allocated storage in GB for Versus MySQL DB"
-  type        = number
-}
+# variable "versus_db_allocated_storage" {
+#   description = "Allocated storage in GB for Versus MySQL DB"
+#   type        = number
+# }
 
-variable "versus_db_username" {
-  description = "Database username for Versus MySQL"
-  type        = string
-}
+# variable "versus_db_username" {
+#   description = "Database username for Versus MySQL"
+#   type        = string
+# }
 
-variable "rds_private_subnet_ids" {
-  description = "Private subnet IDs for RDS subnet group"
-  type        = list(string)
-}
+# variable "rds_private_subnet_ids" {
+#   description = "Private subnet IDs for RDS subnet group"
+#   type        = list(string)
+# }
 
 variable "multi_az" {
   description = "Enable Multi-AZ deployment for MySQL"
@@ -180,28 +180,28 @@ variable "eks_security_group_ids" {
   type        = list(string)
 }
 
-variable "alert_email" {
-  description = "Email Alert"
-  type        = string
-}
+# variable "alert_email" {
+#   description = "Email Alert"
+#   type        = string
+# }
 
-variable "cpu_threshold" {
-  description = "CPU utilization threshold for RDS CloudWatch alarm"
-  type        = number
-}
+# variable "cpu_threshold" {
+#   description = "CPU utilization threshold for RDS CloudWatch alarm"
+#   type        = number
+# }
 
-variable "versus_db_name" {
-  description = "The initial database name for Versus MySQL"
-  type        = string
-  default     = "versusdb"
-}
+# variable "versus_db_name" {
+#   description = "The initial database name for Versus MySQL"
+#   type        = string
+#   default     = "versusdb"
+# }
 
-variable "engine_version" {
-  description = "The engine version of MySQL Database"
-  type        = string
-}
+# variable "engine_version" {
+#   description = "The engine version of MySQL Database"
+#   type        = string
+# }
 
-variable "mysql_parameter_group_name" {
-  description = "Parameter group name of MySQL Database"
-  type        = string
-}
+# variable "mysql_parameter_group_name" {
+#   description = "Parameter group name of MySQL Database"
+#   type        = string
+# }
