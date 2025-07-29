@@ -1,5 +1,5 @@
-greeting    = "Hi"
-project     = "proshop"
+# greeting    = "Hi"
+# project     = "proshop"
 environment = "dev"
 vpc_id      = "vpc-0c0336612a59a2bcb"
 private_subnet_ids = [
@@ -29,22 +29,22 @@ sso_admin_role_arn        = "arn:aws:iam::340924313311:role/aws-reserved/sso.ama
 github_ci_runner_role_arn = "arn:aws:iam::340924313311:role/GitHubActionsCICDrole"
 github_tf_runner_role_arn = "arn:aws:iam::340924313311:role/GitHubActionsTerraformAndPlatformToolsIAMrole"
 
-oidc_provider_id          = "F4C0076A985F1F8B9116CC121C7BB92F"
-external_dns_sa_namespace = "public-helm-charts"
-external_dns_sa_name      = "external-dns"
+# oidc_provider_id          = "F4C0076A985F1F8B9116CC121C7BB92F"
+# external_dns_sa_namespace = "public-helm-charts"
+# external_dns_sa_name      = "external-dns"
 
-eks_resource_arns = ["arn:aws:eks:us-east-1:340924313311:cluster/temporary-eks-cluster-dev"] # Or provide exact ARNs if known
-aws_account_id    = "340924313311"
+# eks_resource_arns = ["arn:aws:eks:us-east-1:340924313311:cluster/temporary-eks-cluster-dev"] # Or provide exact ARNs if known
+# aws_account_id    = "340924313311"
 
 // ********** RDS Variabes **********
-multi_az                    = false
-versus_db_allocated_storage = 20
-cpu_threshold               = 10
-engine_version              = "8.0.42"
-mysql_parameter_group_name  = "default.mysql8.0"
-versus_db_instance_class    = "db.t3.micro"
-versus_db_username          = "versus_dev"
-rds_private_subnet_ids      = ["subnet-00c89359fca37f94c", "subnet-07979053439a5a7b8", "subnet-040413dbcaad2e2f1"]
-eks_security_group_ids      = ["sg-0078aefc09d269a10"]
-alert_email                 = "timur.dzh@edu.312school.com"
-versus_db_name              = "versusdb"
+# multi_az                    = false
+# versus_db_allocated_storage = 20
+# cpu_threshold               = 10
+# engine_version              = "8.0.42"
+# mysql_parameter_group_name  = "default.mysql8.0"
+# versus_db_instance_class    = "db.t3.micro"
+# versus_db_username          = "versus_dev"
+# rds_private_subnet_ids      = ["subnet-00c89359fca37f94c", "subnet-07979053439a5a7b8", "subnet-040413dbcaad2e2f1"]
+# eks_security_group_ids      = ["sg-0078aefc09d269a10"]
+# alert_email                 = "timur.dzh@edu.312school.com"
+# versus_db_name              = "versusdb"
