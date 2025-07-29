@@ -7,11 +7,11 @@
 
 # }
 
-module "module2" {
-  source             = "../../dummy-module-2"
-  input_from_module1 = module.module1.greeting_message
-  # ... any other required variables for module2
-}
+# module "module2" {
+#   source             = "../../dummy-module-2"
+#   input_from_module1 = module.module1.greeting_message
+#   # ... any other required variables for module2
+# }
 
 
 module "cluster_autoscaler_irsa" {
@@ -26,33 +26,33 @@ module "cluster_autoscaler_irsa" {
 
 }
 
-module "proshop_documentdb" {
-  count           = var.enable_condition ? 1 : 0
-  source          = "../../documentdb-module"
-  project         = var.project
-  environment     = var.environment
-  vpc_id          = var.vpc_id
-  subnet_ids      = var.private_subnet_ids
-  eks_nodes_sg_id = var.eks_nodes_sg_id
-}
+# module "proshop_documentdb" {
+#   count           = var.enable_condition ? 1 : 0
+#   source          = "../../documentdb-module"
+#   project         = var.project
+#   environment     = var.environment
+#   vpc_id          = var.vpc_id
+#   subnet_ids      = var.private_subnet_ids
+#   eks_nodes_sg_id = var.eks_nodes_sg_id
+# }
 
-moved {
-  from = module.proshop_documentdb
-  to   = module.proshop_documentdb[0]
-}
+# moved {
+#   from = module.proshop_documentdb
+#   to   = module.proshop_documentdb[0]
+# }
 
 
-module "readonly_iam_role" {
-  count             = var.enable_condition ? 1 : 0
-  source            = "../../readonly-k8s-iamrole"
-  eks_resource_arns = var.eks_resource_arns
-  aws_account_id    = var.aws_account_id
-}
+# module "readonly_iam_role" {
+#   count             = var.enable_condition ? 1 : 0
+#   source            = "../../readonly-k8s-iamrole"
+#   eks_resource_arns = var.eks_resource_arns
+#   aws_account_id    = var.aws_account_id
+# }
 
-moved {
-  from = module.readonly_iam_role
-  to   = module.readonly_iam_role[0]
-}
+# moved {
+#   from = module.readonly_iam_role
+#   to   = module.readonly_iam_role[0]
+# }
 
 
 module "vpc" {
