@@ -5,4 +5,4 @@
 # The table name should be: terraform-locks-${ENVIRONMENT_STAGE}
 
 # Get current AWS account ID
-data "aws_caller_identity" "current" {} 
+# data "aws_caller_identity" "current" {} 
