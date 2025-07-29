@@ -15,7 +15,7 @@ oidc_provider_arn   = "arn:aws:iam::340924313311:oidc-provider/oidc.eks.us-east-
 oidc_provider_url   = "oidc.eks.us-east-1.amazonaws.com/id/F4C0076A985F1F8B9116CC121C7BB92F"
 
 oidc_sub                  = "system:serviceaccount:kube-system:cluster-autoscaler"
-project_name              = "312school-final-project"
+project_name              = "312school-final-project-den-ihor"
 vpc_cidr                  = "10.70.0.0/16"
 public_subnet_cidrs       = ["10.70.1.0/24", "10.70.2.0/24", "10.70.3.0/24"]
 private_subnet_cidrs      = ["10.70.11.0/24", "10.70.12.0/24", "10.70.13.0/24"]
