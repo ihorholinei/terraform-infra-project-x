@@ -1,7 +1,7 @@
-variable "greeting" {
-  description = "A greeting phrase"
-}
-variable "project" {}
+# variable "greeting" {
+#   description = "A greeting phrase"
+# }
+# variable "project" {}
 variable "environment" {}
 variable "vpc_id" {}
 variable "private_subnet_ids" {
@@ -20,10 +20,10 @@ variable "enable_condition" {
 #   type        = list(string)
 # }
 
-variable "aws_account_id" {
-  description = "AWS account ID that is allowed to assume the ReadOnly Cluster Role; also where the EKS cluster and other IAM resources are provisioned"
-  type        = string
-}
+# variable "aws_account_id" {
+#   description = "AWS account ID that is allowed to assume the ReadOnly Cluster Role; also where the EKS cluster and other IAM resources are provisioned"
+#   type        = string
+# }
 
 variable "role_name" {
   type        = string
@@ -134,10 +134,10 @@ variable "ec2_types" {
   }
 }
 
-variable "oidc_provider_id" {
-  description = "OIDC provider ID for EKS cluster"
-  type        = string
-}
+# variable "oidc_provider_id" {
+#   description = "OIDC provider ID for EKS cluster"
+#   type        = string
+# }
 
 # variable "external_dns_sa_namespace" {
 #   description = "Namespace of the external-dns ServiceAccount"
@@ -170,15 +170,15 @@ variable "oidc_provider_id" {
 #   type        = list(string)
 # }
 
-variable "multi_az" {
-  description = "Enable Multi-AZ deployment for MySQL"
-  type        = bool
-}
+# variable "multi_az" {
+#   description = "Enable Multi-AZ deployment for MySQL"
+#   type        = bool
+# }
 
-variable "eks_security_group_ids" {
-  description = "EKS security group IDs allowed to access RDS"
-  type        = list(string)
-}
+# variable "eks_security_group_ids" {
+#   description = "EKS security group IDs allowed to access RDS"
+#   type        = list(string)
+# }
 
 # variable "alert_email" {
 #   description = "Email Alert"
