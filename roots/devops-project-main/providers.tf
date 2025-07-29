@@ -5,9 +5,9 @@ provider "aws" {
 terraform {
   backend "s3" {
     # bucket         = "project-x-state-bucket-den-iho" 
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
-    use_lockfile   = true
+    key          = "terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = true
     # dynamodb_table = "terraformlock"
   }
 }

@@ -6,7 +6,7 @@ data "aws_iam_openid_connect_provider" "github" {
 # Create proper GitHub Actions roles
 resource "aws_iam_role" "github_terraform_runner" {
   name = "GitHubActionsTerraformAndPlatformToolsIAMrole"
-  
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
@@ -29,7 +29,7 @@ resource "aws_iam_role" "github_terraform_runner" {
 
 resource "aws_iam_role" "github_cicd_runner" {
   name = "GitHubActionsCICDrole"
-  
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
