@@ -63,8 +63,8 @@ jobs:
         run: terraform plan -input=false -var-file=${ENVIRONMENT_STAGE}.tfvars --var="enable_condition=${{ env.enable_condition }}"
 
       # Build infrastructure according to Terraform configuration files
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -input=false -var-file=${ENVIRONMENT_STAGE}.tfvars --var="enable_condition=${{ env.enable_condition }}"
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve -input=false -var-file=${ENVIRONMENT_STAGE}.tfvars --var="enable_condition=${{ env.enable_condition }}"
 
     #   # Install NGINX Ingress Controller via Helm
     #   - name: Install NGINX Ingress Controller via Helm
