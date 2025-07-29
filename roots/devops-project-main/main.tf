@@ -22,7 +22,7 @@ module "cluster_autoscaler_irsa" {
   oidc_provider_arn   = var.oidc_provider_arn
   oidc_provider_url   = var.oidc_provider_url
   oidc_sub            = var.oidc_sub
-  # aws_account_id      = var.aws_account_id
+  aws_account_id      = var.aws_account_id
 
 }
 

@@ -20,10 +20,10 @@ variable "enable_condition" {
 #   type        = list(string)
 # }
 
-# variable "aws_account_id" {
-#   description = "AWS account ID that is allowed to assume the ReadOnly Cluster Role; also where the EKS cluster and other IAM resources are provisioned"
-#   type        = string
-# }
+variable "aws_account_id" {
+  description = "AWS account ID that is allowed to assume the ReadOnly Cluster Role; also where the EKS cluster and other IAM resources are provisioned"
+  type        = string
+}
 
 variable "role_name" {
   type        = string
