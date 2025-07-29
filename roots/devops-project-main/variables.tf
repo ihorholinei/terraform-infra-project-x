@@ -3,11 +3,11 @@
 # }
 # variable "project" {}
 variable "environment" {}
-# variable "vpc_id" {}
-# variable "private_subnet_ids" {
-#   type = list(string)
-# }
-# variable "eks_nodes_sg_id" {}
+variable "vpc_id" {}
+variable "private_subnet_ids" {
+  type = list(string)
+}
+variable "eks_nodes_sg_id" {}
 variable "enable_condition" {
   description = "Set to true to enable provisioning of this module's resources; set to false to skip creation. Useful for controlling deployments in multi-module or multi-environment setups."
   type        = bool
@@ -25,30 +25,30 @@ variable "aws_account_id" {
   type        = string
 }
 
-# variable "role_name" {
-#   type        = string
-#   description = "The name of the IAM role to be created for the Cluster Autoscaler."
-# }
+variable "role_name" {
+  type        = string
+  description = "The name of the IAM role to be created for the Cluster Autoscaler."
+}
 
-# variable "serviceaccount_name" {
-#   type        = string
-#   description = "The name of the Kubernetes service account used by the Cluster Autoscaler."
-# }
+variable "serviceaccount_name" {
+  type        = string
+  description = "The name of the Kubernetes service account used by the Cluster Autoscaler."
+}
 
-# variable "oidc_provider_url" {
-#   type        = string
-#   description = "The OIDC provider URL associated with the EKS cluster, without the https:// prefix."
-# }
+variable "oidc_provider_url" {
+  type        = string
+  description = "The OIDC provider URL associated with the EKS cluster, without the https:// prefix."
+}
 
-# variable "oidc_provider_arn" {
-#   type        = string
-#   description = "The ARN of the OIDC provider linked to the EKS cluster."
-# }
+variable "oidc_provider_arn" {
+  type        = string
+  description = "The ARN of the OIDC provider linked to the EKS cluster."
+}
 
-# variable "oidc_sub" {
-#   description = "OIDC subject (наприклад system:serviceaccount:kube-system:cluster-autoscaler)"
-#   type        = string
-# }
+variable "oidc_sub" {
+  description = "OIDC subject (наприклад system:serviceaccount:kube-system:cluster-autoscaler)"
+  type        = string
+}
 variable "project_name" {
   type        = string
   description = "Name of the project, used for resource naming and tagging."

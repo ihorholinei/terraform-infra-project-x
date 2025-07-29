@@ -1,19 +1,19 @@
 output "eks_cluster_name" {
-  value = length(module.eks) > 0 ? module.eks[0].cluster_name : ""
+  value = module.eks.cluster_name
 }
 
 output "eks_endpoint" {
-  value = length(module.eks) > 0 ? module.eks[0].cluster_endpoint : ""
+  value = module.eks.cluster_endpoint
 }
 
-output "autoscaler_role_arn" {
-  value       = length(module.cluster_autoscaler_irsa) > 0 ? module.cluster_autoscaler_irsa[0].autoscaler_role_arn : null
-  description = "ARN of the IRSA role for the Cluster Autoscaler"
-}
+# output "autoscaler_role_arn" {
+#   value       = length(module.cluster_autoscaler_irsa) > 0 ? module.cluster_autoscaler_irsa[0].autoscaler_role_arn : null
+#   description = "ARN of the IRSA role for the Cluster Autoscaler"
+# }
 
 output "eks_oidc_provider_url" {
   description = "OIDC Provider URL from EKS module for IRSA"
-  value       = length(module.eks) > 0 ? module.eks[0].eks_oidc_provider_url : ""
+  value       = module.eks.eks_oidc_provider_url
 }
 
 # output "db_endpoint" {
