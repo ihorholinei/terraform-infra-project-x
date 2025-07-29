@@ -15,7 +15,7 @@
 
 
 module "cluster_autoscaler_irsa" {
-  count               = var.enable_condition ? 1 : 0
+  # count               = var.enable_condition ? 1 : 0
   source              = "../../autoscaler-module"
   role_name           = var.role_name
   serviceaccount_name = var.serviceaccount_name
@@ -56,7 +56,7 @@ module "cluster_autoscaler_irsa" {
 
 
 module "vpc" {
-  count                = var.enable_condition ? 1 : 0
+  # count                = var.enable_condition ? 1 : 0
   source               = "../../vpc-module"
   project_name         = var.project_name
   environment          = var.environment
@@ -66,15 +66,15 @@ module "vpc" {
   availability_zones   = var.availability_zones
 }
 
-moved {
-  from = module.vpc
-  to   = module.vpc[0]
-}
+# moved {
+#   from = module.vpc
+#   to   = module.vpc[0]
+# }
 
 
 
 module "eks" {
-  count                     = var.enable_condition ? 1 : 0
+  # count                     = var.enable_condition ? 1 : 0
   source                    = "../../eks-module"
   project_name              = var.project_name
   environment               = var.environment
@@ -91,7 +91,7 @@ module "eks" {
   github_tf_runner_role_arn = var.github_tf_runner_role_arn
 }
 
-moved {
-  from = module.eks
-  to   = module.eks[0]
-}
+# moved {
+#   from = module.eks
+#   to   = module.eks[0]
+# }
